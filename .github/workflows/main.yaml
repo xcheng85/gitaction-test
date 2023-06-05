@@ -17,6 +17,8 @@ jobs:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run: |
+        echo "$DOCKER_USER"
+        echo "$DOCKER_PASSWORD"
         echo "$DOCKER_PASSWORD" | docker login --username taviamcboa --password-stdin 
     
     - name: Build, Tag and Push the image to Dockerhub
