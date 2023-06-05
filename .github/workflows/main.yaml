@@ -26,13 +26,18 @@ jobs:
     #     echo "$DOCKER_USER"
     #     echo "$DOCKER_PASSWORD"
     #     echo "$DOCKER_PASSWORD" | docker login --username taviamcboa --password-stdin 
+    - name: Automatic Tagging of Releases
+      id: increment-git-tag # used for reference
+      run: |
+        bash ./build/git_update.sh -v patch
+
     
     - name: Build, Tag and Push the image to Dockerhub
       id: build-image
       env:
         REGISTRY: taviamcboa
         REPOSITORY: golangtest
-        IMAGE_TAG: latest
+        IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
       run: |
         docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG

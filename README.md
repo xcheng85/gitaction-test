@@ -41,6 +41,9 @@ git commit -m ""
 git push origin main
 ```
 
+### Step7: custom tag
+mkdir -p build && touch ./build/git_update.sh
+
 
 ## Hightlights
 
