@@ -36,10 +36,15 @@ and reference it as env
 ### Step6: Commit github action yaml
 ```shell
 git status -s
-
+git add .
+git commit -m ""
+git push origin main
 ```
 
 
 ## Hightlights
 
 ### go get vs go mod download
+
+Run docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+WARNING! Using -*** the CLI is insecure. Use --password-stdin.
