@@ -33,7 +33,11 @@ mkdir -p .github && cd .github/ && mkdir -p workflows && touch main.yaml && cd .
 2. Docker password
 and reference it as env
 
-### Step6: 
+### Step6: Commit github action yaml
+```shell
+git status -s
+
+```
 
 
 ## Hightlights

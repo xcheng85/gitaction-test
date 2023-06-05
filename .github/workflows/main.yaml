@@ -1,0 +1,31 @@
+---
+name: Build and Push Golang Image to DockerHub
+on:
+  push:
+    branches: [main]
+jobs:
+  build-and-push: # arbitary name of this job
+    name: Build and Push to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2 # open-source github actions by community
+
+    - name: Dockerhub login
+      id: login-dockerhub
+      env: 
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    
+    - name: Build, Tag and Push the image to Dockerhub
+      id: build-image
+      env:
+        REGISTRY: taviamcboa
+        REPOSITORY: golangtest
+        IMAGE_TAG: latest
+      run: |
+        docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+        docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+
